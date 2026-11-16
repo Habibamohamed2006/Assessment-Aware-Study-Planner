@@ -1,0 +1,3 @@
+predictor,reaches_target_mean,reaches_target_std,sessions_when_solved_mean,sessions_when_solved_std,plans_needing_effort_mean,plans_needing_effort_std
+AvgMark,0.427,0.095,0.0,0.0,0.0,0.0
+NN,0.747,0.107,4.519,0.538,1.0,0.0

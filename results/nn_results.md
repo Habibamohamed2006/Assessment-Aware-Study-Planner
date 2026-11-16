@@ -1,0 +1,5 @@
+| model | MAE_mean | MAE_std | RMSE_mean | RMSE_std | R2_mean | R2_std |
+|---|---|---|---|---|---|---|
+| Baseline: avg previous mark | 8.978 | 0.0 | 12.248 | 0.0 | 0.268 | 0.0 |
+| Baseline: ridge regression | 8.326 | 0.0 | 11.264 | 0.0 | 0.381 | 0.0 |
+| NN (12-16-8-1) | 8.009 | 0.04 | 10.755 | 0.028 | 0.436 | 0.003 |
