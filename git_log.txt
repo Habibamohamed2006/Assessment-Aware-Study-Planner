@@ -1,0 +1,132 @@
+4429638 Initial implementation of Assessment-Aware Study Planner
+ .streamlit/config.toml                             |    10 +
+ README.md                                          |   184 +
+ __pycache__/config.cpython-313.pyc                 |   Bin 0 -> 680 bytes
+ app.py                                             |    54 +
+ config.py                                          |    21 +
+ csp/__init__.py                                    |     6 +
+ csp/__pycache__/__init__.cpython-313.pyc           |   Bin 0 -> 611 bytes
+ csp/__pycache__/ac3.cpython-313.pyc                |   Bin 0 -> 2124 bytes
+ csp/__pycache__/backtracking.cpython-313.pyc       |   Bin 0 -> 3792 bytes
+ csp/__pycache__/constraints.cpython-313.pyc        |   Bin 0 -> 1877 bytes
+ csp/__pycache__/forward_checking.cpython-313.pyc   |   Bin 0 -> 975 bytes
+ csp/__pycache__/variables.cpython-313.pyc          |   Bin 0 -> 4373 bytes
+ csp/ac3.py                                         |    18 +
+ csp/backtracking.py                                |    59 +
+ csp/constraints.py                                 |    34 +
+ csp/forward_checking.py                            |    15 +
+ csp/variables.py                                   |    58 +
+ data/__init__.py                                   |     1 +
+ data/__pycache__/__init__.cpython-313.pyc          |   Bin 0 -> 258 bytes
+ data/__pycache__/dataset_loader.cpython-313.pyc    |   Bin 0 -> 3446 bytes
+ data/__pycache__/make_data.cpython-313.pyc         |   Bin 0 -> 10238 bytes
+ data/__pycache__/preprocessing.cpython-313.pyc     |   Bin 0 -> 7584 bytes
+ data/data_dictionary.md                            |   223 +
+ data/dataset_loader.py                             |    41 +
+ data/make_data.py                                  |   123 +
+ data/preprocessing.py                              |    83 +
+ data/processed/oulad_processed.csv                 | 54770 +++++++++++++++++++
+ eval/__init__.py                                   |     1 +
+ eval/__pycache__/__init__.cpython-313.pyc          |   Bin 0 -> 220 bytes
+ eval/__pycache__/experiments.cpython-313.pyc       |   Bin 0 -> 13914 bytes
+ eval/__pycache__/metrics.cpython-313.pyc           |   Bin 0 -> 3035 bytes
+ eval/__pycache__/plots.cpython-313.pyc             |   Bin 0 -> 7814 bytes
+ eval/experiments.py                                |   141 +
+ eval/metrics.py                                    |    32 +
+ eval/plots.py                                      |    53 +
+ gui/__init__.py                                    |     0
+ gui/__pycache__/__init__.cpython-313.pyc           |   Bin 0 -> 156 bytes
+ gui/__pycache__/charts.cpython-313.pyc             |   Bin 0 -> 21888 bytes
+ gui/__pycache__/helpers.cpython-313.pyc            |   Bin 0 -> 39038 bytes
+ gui/__pycache__/ui.cpython-313.pyc                 |   Bin 0 -> 6725 bytes
+ gui/charts.py                                      |   232 +
+ gui/helpers.py                                     |   495 +
+ gui/ui.py                                          |    96 +
+ gui/views/__init__.py                              |     0
+ gui/views/__pycache__/__init__.cpython-313.pyc     |   Bin 0 -> 162 bytes
+ gui/views/__pycache__/csp_page.cpython-313.pyc     |   Bin 0 -> 14660 bytes
+ gui/views/__pycache__/dashboard.cpython-313.pyc    |   Bin 0 -> 13632 bytes
+ .../__pycache__/experiments_page.cpython-313.pyc   |   Bin 0 -> 14273 bytes
+ gui/views/__pycache__/nn_page.cpython-313.pyc      |   Bin 0 -> 10369 bytes
+ gui/views/__pycache__/scenario.cpython-313.pyc     |   Bin 0 -> 1399 bytes
+ gui/views/__pycache__/search_page.cpython-313.pyc  |   Bin 0 -> 9387 bytes
+ gui/views/csp_page.py                              |   134 +
+ gui/views/dashboard.py                             |   132 +
+ gui/views/experiments_page.py                      |   140 +
+ gui/views/nn_page.py                               |    94 +
+ gui/views/scenario.py                              |    14 +
+ gui/views/search_page.py                           |    88 +
+ individual_contribution.md                         |    15 +
+ integration/__init__.py                            |     1 +
+ integration/__pycache__/__init__.cpython-313.pyc   |   Bin 0 -> 228 bytes
+ integration/__pycache__/planner.cpython-313.pyc    |   Bin 0 -> 7395 bytes
+ integration/planner.py                             |    92 +
+ models/.gitkeep                                    |     0
+ models/mlp_seed42.npz                              |   Bin 0 -> 4926 bytes
+ models/study_planner_mlp.npz                       |   Bin 0 -> 4926 bytes
+ nn/__init__.py                                     |     1 +
+ nn/__pycache__/__init__.cpython-313.pyc            |   Bin 0 -> 241 bytes
+ nn/__pycache__/baseline.cpython-313.pyc            |   Bin 0 -> 3670 bytes
+ nn/__pycache__/model.cpython-313.pyc               |   Bin 0 -> 8136 bytes
+ nn/__pycache__/predict.cpython-313.pyc             |   Bin 0 -> 3767 bytes
+ nn/__pycache__/train.cpython-313.pyc               |   Bin 0 -> 4421 bytes
+ nn/baseline.py                                     |    25 +
+ nn/model.py                                        |    77 +
+ nn/predict.py                                      |    39 +
+ nn/train.py                                        |    47 +
+ pytest.ini                                         |     5 +
+ requirements.txt                                   |     6 +
+ results/demo_1_cooperation.png                     |   Bin 0 -> 98823 bytes
+ results/demo_2_nn_off.png                          |   Bin 0 -> 65451 bytes
+ results/demo_3_csp_rejects.png                     |   Bin 0 -> 111178 bytes
+ results/exp1_cost.png                              |   Bin 0 -> 18689 bytes
+ results/exp1_nodes.png                             |   Bin 0 -> 24944 bytes
+ results/exp1_search.csv                            |     4 +
+ results/exp1_search.md                             |     5 +
+ results/exp2_ac3_prunings.png                      |   Bin 0 -> 22461 bytes
+ results/exp2_assignments.png                       |   Bin 0 -> 24302 bytes
+ results/exp2_backtracks.png                        |   Bin 0 -> 23860 bytes
+ results/exp2_checks.png                            |   Bin 0 -> 25166 bytes
+ results/exp2_csp.csv                               |    10 +
+ results/exp2_csp.md                                |    11 +
+ results/exp2_fc_prunings.png                       |   Bin 0 -> 31229 bytes
+ results/exp3_nn_vs_avg.csv                         |     3 +
+ results/exp3_nn_vs_avg.md                          |     4 +
+ results/exp3_reach.png                             |   Bin 0 -> 22997 bytes
+ results/monotonicity.csv                           |     6 +
+ results/monotonicity.md                            |     7 +
+ results/nn_results.csv                             |     4 +
+ results/nn_results.md                              |     5 +
+ results/planner_30_profiles.csv                    |    31 +
+ run_demo.py                                        |    79 +
+ search/__init__.py                                 |    99 +
+ search/__pycache__/__init__.cpython-313.pyc        |   Bin 0 -> 8105 bytes
+ search/__pycache__/astar.cpython-313.pyc           |   Bin 0 -> 784 bytes
+ search/__pycache__/greedy.cpython-313.pyc          |   Bin 0 -> 676 bytes
+ search/__pycache__/ucs.cpython-313.pyc             |   Bin 0 -> 626 bytes
+ search/astar.py                                    |     7 +
+ search/greedy.py                                   |     6 +
+ search/ucs.py                                      |     6 +
+ tests/__init__.py                                  |    26 +
+ tests/__pycache__/__init__.cpython-313.pyc         |   Bin 0 -> 2853 bytes
+ tests/__pycache__/gui_stubs.cpython-313.pyc        |   Bin 0 -> 10862 bytes
+ .../test_csp.cpython-313-pytest-9.0.2.pyc          |   Bin 0 -> 17486 bytes
+ .../test_data.cpython-313-pytest-9.0.2.pyc         |   Bin 0 -> 19241 bytes
+ .../test_edge_cases.cpython-313-pytest-9.0.2.pyc   |   Bin 0 -> 15358 bytes
+ .../test_gui_app.cpython-313-pytest-9.0.2.pyc      |   Bin 0 -> 10410 bytes
+ .../test_gui_helpers.cpython-313-pytest-9.0.2.pyc  |   Bin 0 -> 74373 bytes
+ .../test_integration.cpython-313-pytest-9.0.2.pyc  |   Bin 0 -> 11248 bytes
+ .../test_nn.cpython-313-pytest-9.0.2.pyc           |   Bin 0 -> 19907 bytes
+ ...est_required_cases.cpython-313-pytest-9.0.2.pyc |   Bin 0 -> 23920 bytes
+ .../test_search.cpython-313-pytest-9.0.2.pyc       |   Bin 0 -> 18436 bytes
+ tests/gui_stubs.py                                 |   106 +
+ tests/test_csp.py                                  |    34 +
+ tests/test_data.py                                 |    25 +
+ tests/test_edge_cases.py                           |    32 +
+ tests/test_gui_app.py                              |    76 +
+ tests/test_gui_helpers.py                          |   169 +
+ tests/test_integration.py                          |    22 +
+ tests/test_nn.py                                   |    42 +
+ tests/test_required_cases.py                       |    73 +
+ tests/test_search.py                               |    32 +
+ 130 files changed, 58584 insertions(+)
